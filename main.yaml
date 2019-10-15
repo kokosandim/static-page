@@ -4,8 +4,7 @@
   roles   :
           - geerlingguy.java
           - geerlingguy.jenkins
-          - geerlingguy.docker 
-
+          
 - hosts   : develop
   become  : yes
   roles   :
