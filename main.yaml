@@ -1,0 +1,6 @@
+---
+- hosts   :   ubuntu-host1 ubuntu-host2 
+  become  :   yes
+  roles   :
+          - geerlingguy.java
+          - geerlingguy.jenkins
