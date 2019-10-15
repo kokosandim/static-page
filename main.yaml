@@ -1,6 +1,12 @@
 ---
-- hosts   :   ubuntu-host1 ubuntu-host2 
-  become  :   yes
+- hosts   : jenkins_servers 
+  become  : yes
   roles   :
           - geerlingguy.java
           - geerlingguy.jenkins
+          - geerlingguy.docker 
+
+- hosts   : develop
+  become  : yes
+  roles   :
+          - geerlingguy.docker
