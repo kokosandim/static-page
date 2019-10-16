@@ -37,12 +37,6 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     script {
                         sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@$develop_ip \"docker pull mykprok/nginxapp:${env.BUILD_NUMBER}\""
-                        try {
-                            sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@$develop_ip \"docker stop nginxapp\""
-                            sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@$develop_ip \"docker rm nginxapp\""
-                        } catch (err) {
-                            echo: 'caught error: $err'
-                        }
                         sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@$develop_ip \"docker run --restart always --name nginxapp -p 8090:8080 -d mykprok/nginxapp:${env.BUILD_NUMBER}\""
                     }
                 }
