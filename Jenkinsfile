@@ -32,8 +32,6 @@ pipeline {
                 branch 'master'
             }
             steps {
-#                input 'Deploy to Production?'
-#                milestone(1)
                 withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     script {
                         sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@$develop_ip \"docker pull mykprok/nginxapp:${env.BUILD_NUMBER}\""
