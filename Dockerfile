@@ -1,7 +1,7 @@
 FROM nginx:stable
 
-COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 RUN groupadd -g 999 testuser && useradd -r -u 999 -g testuser testuser && \
   chown -R testuser:testuser /var/log/nginx/ && \
   chown -R testuser:testuser /etc/nginx/ && \
@@ -11,6 +11,5 @@ RUN groupadd -g 999 testuser && useradd -r -u 999 -g testuser testuser && \
 USER testuser
 RUN /etc/init.d/nginx start
 WORKDIR /usr/share/nginx/html/app
-COPY default.conf /etc/nginx/conf.d/default.conf
 COPY ./app /usr/share/nginx/html/app
 #EXPOSE 8090
